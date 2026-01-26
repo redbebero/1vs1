@@ -1,0 +1,61 @@
+extends Camera2D
+
+@export var player1_path: NodePath = "../Player1"
+@export var player2_path: NodePath = "../Player2"
+@export var min_zoom: float = 0.5 # Max zoom out (see more area)
+@export var max_zoom: float = 2.0 # Max zoom in (closer view)
+@export var margin: Vector2 = Vector2(400, 300) # Margin around players
+@export var smooth_speed: float = 5.0
+@export var y_offset: float = -100.0 # Shift camera up a bit so players aren't vertically centered (allows seeing jump height)
+
+var player1: Node2D
+var player2: Node2D
+
+func _ready() -> void:
+	player1 = get_node_or_null(player1_path)
+	player2 = get_node_or_null(player2_path)
+	
+	if not player1 or not player2:
+		set_physics_process(false)
+		push_error("DynamicCamera: Players not found! Check node paths.")
+
+# Changed to _physics_process to sync with Player movement (CharacterBody2D)
+# This prevents visual "jitter" caused by the camera updating at a different rate (fps) than the physics (tps).
+func _physics_process(delta: float) -> void:
+	if not player1 or not player2:
+		return
+
+	var p1_pos = player1.global_position
+	var p2_pos = player2.global_position
+	
+	# Calculate center
+	var center = (p1_pos + p2_pos) / 2.0
+	var target_pos = center
+	target_pos.y += y_offset
+	
+	# Smoothly move position
+	position = position.lerp(target_pos, smooth_speed * delta)
+	
+	# Calculate Zoom
+	var screen_size = get_viewport_rect().size
+	var bounds_size = (p1_pos - p2_pos).abs() + margin
+	
+	# Calculate required zoom to fit width and height
+	# For Godot 4: Zoom > 1 is Zoom In. Zoom < 1 is Zoom Out.
+	# We want: screen_size / bounds_size
+	# Example: Screen 1000, Bounds 500 -> Zoom 2.0 (Zoom In)
+	# Example: Screen 1000, Bounds 2000 -> Zoom 0.5 (Zoom Out)
+	
+	var zoom_x = screen_size.x / max(bounds_size.x, 100.0)
+	var zoom_y = screen_size.y / max(bounds_size.y, 100.0)
+	
+	# We pick the smaller zoom value to ensure everything fits
+	# (e.g. if we need 0.5 for width and 1.0 for height, we must use 0.5)
+	var target_zoom_val = min(zoom_x, zoom_y)
+	
+	# Clamp zoom
+	target_zoom_val = clamp(target_zoom_val, min_zoom, max_zoom)
+	
+	var target_zoom = Vector2(target_zoom_val, target_zoom_val)
+	
+	zoom = zoom.lerp(target_zoom, smooth_speed * delta)

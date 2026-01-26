@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgoy047ramjii"]
+[gd_scene load_steps=4 format=3 uid="uid://dgoy047ramjii"]
 
 [ext_resource type="PackedScene" uid="uid://4k4eq8cgyrgx" path="res://Scenes/Player.tscn" id="1_fighter"]
+[ext_resource type="Script" uid="uid://dmus58cviu6gx" path="res://Scripts/Core/DynamicCamera.gd" id="2_camera"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ground"]
 
@@ -23,3 +24,7 @@ position = Vector2(300, 450)
 [node name="Player2" parent="." instance=ExtResource("1_fighter")]
 position = Vector2(852, 450)
 PlayerId = 2
+
+[node name="DynamicCamera" type="Camera2D" parent="."]
+position = Vector2(576, 450)
+script = ExtResource("2_camera")
