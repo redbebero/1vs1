@@ -1,4 +1,4 @@
-# Godot 1-vs-1 Neon Fighter (C#) - Master Plan
+# Godot 1-vs-1 Neon Fighter (GDScript) - Master Plan
 
 ## Current Focus: The Knight & Prototype Arena
 
@@ -10,15 +10,15 @@
 ### 2. Character Architecture (`StickmanFighter`)
 To support 45 characters easily via CLI, we separate Data, Visuals, and Logic.
 
-*   **`FighterController.cs` (Logic):**
+*   **`FighterController.gd` (Logic):**
     *   Handles Input (P1/P2 separation).
     *   Manages State Machine (Idle, Run, Jump, Attack, Stun).
     *   **Command System:** Checks directional input buffer when Skill button is pressed to select: `Neutral`, `Side`, `Up`, `Down`.
-*   **`StickmanVisuals.cs` (Visuals):**
+*   **`StickmanVisuals.gd` (Visuals):**
     *   Procedurally generates `Line2D` limbs (Head, Body, Arms, Legs).
     *   **Weapon Points:** Hand markers to attach `Sword` or `Shield` sprites/lines dynamically based on `CharacterData`.
     *   Uses `Tween` for animations (Attack swings, Walking bob).
-*   **`CharacterData.cs` (Data):**
+*   **`CharacterData.gd` (Data):**
     *   Holds Stats (HP, Speed, Poise).
     *   **MoveSet Dictionary:** Maps `[SkillSlot][Direction]` -> `SkillData`.
 
@@ -43,8 +43,8 @@ To support 45 characters easily via CLI, we separate Data, Visuals, and Logic.
 **File Structure Plan:**
 *   `Scenes/World.tscn`
 *   `Scenes/Fighter.tscn`
-*   `Scripts/Core/GameManager.cs`
-*   `Scripts/Characters/FighterController.cs`
-*   `Scripts/Characters/StickmanVisuals.cs`
-*   `Scripts/Resources/SkillData.cs` (Updated)
-*   `Scripts/Resources/CharacterData.cs`
+*   `Scripts/Core/GameManager.gd`
+*   `Scripts/Characters/FighterController.gd`
+*   `Scripts/Characters/StickmanVisuals.gd`
+*   `Scripts/Resources/SkillData.gd` (Updated)
+*   `Scripts/Resources/CharacterData.gd`

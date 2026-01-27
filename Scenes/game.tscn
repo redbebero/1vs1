@@ -1,30 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgoy047ramjii"]
+[gd_scene format=3 uid="uid://dgoy047ramjii"]
 
 [ext_resource type="PackedScene" uid="uid://4k4eq8cgyrgx" path="res://Scenes/Player.tscn" id="1_fighter"]
 [ext_resource type="Script" uid="uid://dmus58cviu6gx" path="res://Scripts/Core/DynamicCamera.gd" id="2_camera"]
 
+[sub_resource type="Environment" id="Environment_neon"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/3 = 0.5
+glow_intensity = 1.2
+glow_strength = 1.3
+glow_bloom = 0.3
+glow_blend_mode = 0
+glow_hdr_threshold = 0.5
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ground"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1441888392]
 
-[node name="Ground" type="StaticBody2D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=647143323]
+environment = SubResource("Environment_neon")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1700531191]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=1762333166]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.04, 1)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1659013121]
 position = Vector2(576, 500)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1811804408]
 shape = SubResource("WorldBoundaryShape2D_ground")
 
-[node name="Line2D" type="Line2D" parent="Ground"]
+[node name="Line2D" type="Line2D" parent="Ground" unique_id=1229399213]
 points = PackedVector2Array(-5000, 0, 5000, 0)
 width = 4.0
-default_color = Color(0, 1, 1, 1)
+default_color = Color(0.8, 0.8, 0.9, 1)
 
-[node name="Player1" parent="." instance=ExtResource("1_fighter")]
+[node name="Player1" parent="." unique_id=1521965293 instance=ExtResource("1_fighter")]
 position = Vector2(300, 450)
 
-[node name="Player2" parent="." instance=ExtResource("1_fighter")]
+[node name="Player2" parent="." unique_id=898464859 instance=ExtResource("1_fighter")]
 position = Vector2(852, 450)
-PlayerId = 2
+player_id = 2
 
-[node name="DynamicCamera" type="Camera2D" parent="."]
+[node name="DynamicCamera" type="Camera2D" parent="." unique_id=1646275972]
 position = Vector2(576, 450)
 script = ExtResource("2_camera")

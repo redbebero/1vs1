@@ -11,6 +11,12 @@ extends Camera2D
 var player1: Node2D
 var player2: Node2D
 
+# --- Shake Settings ---
+@export var shake_decay: float = 5.0
+@export var max_shake_offset: Vector2 = Vector2(30, 30)
+@export var max_shake_roll: float = 0.1
+var _shake_power: float = 0.0
+
 func _ready() -> void:
 	player1 = get_node_or_null(player1_path)
 	player2 = get_node_or_null(player2_path)
@@ -18,6 +24,9 @@ func _ready() -> void:
 	if not player1 or not player2:
 		set_physics_process(false)
 		push_error("DynamicCamera: Players not found! Check node paths.")
+
+func add_trauma(amount: float) -> void:
+	_shake_power = min(_shake_power + amount, 1.0)
 
 # Changed to _physics_process to sync with Player movement (CharacterBody2D)
 # This prevents visual "jitter" caused by the camera updating at a different rate (fps) than the physics (tps).
@@ -35,6 +44,18 @@ func _physics_process(delta: float) -> void:
 	
 	# Smoothly move position
 	position = position.lerp(target_pos, smooth_speed * delta)
+	
+	# --- Apply Shake ---
+	if _shake_power > 0:
+		_shake_power = max(0.0, _shake_power - shake_decay * delta)
+		var amount = _shake_power * _shake_power # Quadratic falloff
+		
+		# Apply offset on top of the smoothed position
+		position.x += randf_range(-1, 1) * max_shake_offset.x * amount
+		position.y += randf_range(-1, 1) * max_shake_offset.y * amount
+		rotation = max_shake_roll * amount * randf_range(-1, 1)
+	else:
+		rotation = 0.0
 	
 	# Calculate Zoom
 	var screen_size = get_viewport_rect().size

@@ -1,18 +1,216 @@
-[gd_scene load_steps=3 format=3 uid="uid://4k4eq8cgyrgx"]
+[gd_scene load_steps=12 format=3 uid="uid://4k4eq8cgyrgx"]
 
-[ext_resource type="Script" uid="uid://dsm0rbfppltos" path="res://Scripts/Characters/FighterController.gd" id="1_script"]
+[ext_resource type="Script" path="res://Scripts/Characters/FighterController.gd" id="1_controller"]
+[ext_resource type="Script" path="res://Scripts/Characters/StickmanVisuals.gd" id="2_visuals"]
+[ext_resource type="Script" path="res://Scripts/Characters/ProceduralAnimator.gd" id="3_animator"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qal4t"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 15.0
+height = 130.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_torso"]
+radius = 10.0
+height = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_head"]
+radius = 15.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_limb"]
+radius = 6.0
+height = 30.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shin"]
+radius = 6.0
+height = 40.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_default"]
 
 [node name="Fighter" type="CharacterBody2D"]
-script = ExtResource("1_script")
+script = ExtResource("1_controller")
+speed = 400.0
+jump_force = -700.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_qal4t")
+position = Vector2(0, -65)
+shape = SubResource("CapsuleShape2D_body")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.0
-offset_top = -15.0
-offset_right = 10.0
-offset_bottom = 15.0
-color = Color(0, 1, 0, 1)
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Hip" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(0, -45)
+rest = Transform2D(1, 0, 0, 1, 0, -45)
+
+[node name="Torso" type="Bone2D" parent="Skeleton2D/Hip"]
+position = Vector2(0, -35)
+rest = Transform2D(1, 0, 0, 1, 0, -35)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(0, 18)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Torso/Hurtbox"]
+shape = SubResource("CapsuleShape2D_torso")
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(0, -15)
+rest = Transform2D(1, 0, 0, 1, 0, -15)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/Torso/Head"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Torso/Head/Hurtbox"]
+shape = SubResource("CircleShape2D_head")
+
+[node name="HeadEnd" type="Bone2D" parent="Skeleton2D/Hip/Torso/Head"]
+position = Vector2(0, -10)
+rest = Transform2D(1, 0, 0, 1, 0, -10)
+
+[node name="ArmL" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(0, 0)
+rotation = 0.5
+rest = Transform2D(0.877, 0.479, -0.479, 0.877, 0, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/Torso/ArmL"]
+position = Vector2(-12, 0)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Torso/ArmL/Hurtbox"]
+shape = SubResource("CapsuleShape2D_limb")
+
+[node name="ForeArmL" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmL"]
+position = Vector2(-25, 0)
+rest = Transform2D(1, 0, 0, 1, -25, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/Torso/ArmL/ForeArmL"]
+position = Vector2(-10, 0)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Torso/ArmL/ForeArmL/Hurtbox"]
+shape = SubResource("CapsuleShape2D_limb")
+
+[node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmL/ForeArmL"]
+position = Vector2(-20, 0)
+rest = Transform2D(1, 0, 0, 1, -20, 0)
+
+[node name="HandLEnd" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmL/ForeArmL/HandL"]
+position = Vector2(-5, 0)
+rest = Transform2D(1, 0, 0, 1, -5, 0)
+
+[node name="ArmR" type="Bone2D" parent="Skeleton2D/Hip/Torso"]
+position = Vector2(0, 0)
+rotation = -0.5
+rest = Transform2D(0.877, -0.479, 0.479, 0.877, 0, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/Torso/ArmR"]
+position = Vector2(12, 0)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Torso/ArmR/Hurtbox"]
+shape = SubResource("CapsuleShape2D_limb")
+
+[node name="ForeArmR" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmR"]
+position = Vector2(25, 0)
+rest = Transform2D(1, 0, 0, 1, 25, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/Torso/ArmR/ForeArmR"]
+position = Vector2(10, 0)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/Torso/ArmR/ForeArmR/Hurtbox"]
+shape = SubResource("CapsuleShape2D_limb")
+
+[node name="HandR" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmR/ForeArmR"]
+position = Vector2(20, 0)
+rest = Transform2D(1, 0, 0, 1, 20, 0)
+
+[node name="HandREnd" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmR/ForeArmR/HandR"]
+position = Vector2(5, 0)
+rest = Transform2D(1, 0, 0, 1, 5, 0)
+
+[node name="ThighL" type="Bone2D" parent="Skeleton2D/Hip"]
+position = Vector2(0, 0)
+rotation = -0.1
+rest = Transform2D(0.995, -0.099, 0.099, 0.995, 0, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/ThighL"]
+position = Vector2(0, 20)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/ThighL/Hurtbox"]
+shape = SubResource("CapsuleShape2D_limb")
+
+[node name="ShinL" type="Bone2D" parent="Skeleton2D/Hip/ThighL"]
+position = Vector2(0, 25)
+rest = Transform2D(1, 0, 0, 1, 0, 25)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/ThighL/ShinL"]
+position = Vector2(0, 12)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/ThighL/ShinL/Hurtbox"]
+shape = SubResource("CapsuleShape2D_shin")
+
+[node name="FootL" type="Bone2D" parent="Skeleton2D/Hip/ThighL/ShinL"]
+position = Vector2(0, 25)
+rest = Transform2D(1, 0, 0, 1, 0, 25)
+
+[node name="FootLEnd" type="Bone2D" parent="Skeleton2D/Hip/ThighL/ShinL/FootL"]
+position = Vector2(0, 10)
+rest = Transform2D(1, 0, 0, 1, 0, 10)
+
+[node name="ThighR" type="Bone2D" parent="Skeleton2D/Hip"]
+position = Vector2(0, 0)
+rotation = 0.1
+rest = Transform2D(0.995, 0.099, -0.099, 0.995, 0, 0)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/ThighR"]
+position = Vector2(0, 12)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/ThighR/Hurtbox"]
+shape = SubResource("CapsuleShape2D_limb")
+
+[node name="ShinR" type="Bone2D" parent="Skeleton2D/Hip/ThighR"]
+position = Vector2(0, 25)
+rest = Transform2D(1, 0, 0, 1, 0, 25)
+
+[node name="Hurtbox" type="Area2D" parent="Skeleton2D/Hip/ThighR/ShinR"]
+position = Vector2(0, 12)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D/Hip/ThighR/ShinR/Hurtbox"]
+shape = SubResource("CapsuleShape2D_shin")
+
+[node name="FootR" type="Bone2D" parent="Skeleton2D/Hip/ThighR/ShinR"]
+position = Vector2(0, 25)
+rest = Transform2D(1, 0, 0, 1, 0, 25)
+
+[node name="FootREnd" type="Bone2D" parent="Skeleton2D/Hip/ThighR/ShinR/FootR"]
+position = Vector2(0, 10)
+rest = Transform2D(1, 0, 0, 1, 0, 10)
+
+[node name="StickmanVisuals" type="Node2D" parent="."]
+script = ExtResource("2_visuals")
+line_color = Color(0.2, 2, 2.5, 1)
+
+[node name="ProceduralAnimator" type="Node" parent="."]
+script = ExtResource("3_animator")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_default")
+}
