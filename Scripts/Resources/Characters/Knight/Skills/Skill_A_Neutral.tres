@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://cjupm1nkfeejq"]
+
+[ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://dhjn8isb0bfjp" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_A_Neutral.tres" id="2_anim"]
+
+[resource]
+script = ExtResource("1_script")
+skill_name = "Silver Slash"
+cooldown = 1.0
+startup_time = 0.1
+animation = ExtResource("2_anim")
+hitbox_name = "weapon_l"
+damage = 15.0
+hitbox_size = Vector2(60, 20)
+hitbox_offset = Vector2(30, 0)
+knockback = Vector2(50, 0)

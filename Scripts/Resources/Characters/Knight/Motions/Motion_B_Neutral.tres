@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MotionData" format=3 uid="uid://dh3caea6nak0p"]
+
+[ext_resource type="Script" uid="uid://sl60w16jgcrt" path="res://Scripts/Resources/MotionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+motion_name = "Shield Bash"
+steps = Array[Dictionary]([{
+"ArmL": 0.5,
+"ArmR": 2.0,
+"ForeArmR": -2.0,
+"Head": 0.1,
+"Torso": -0.2,
+"duration": 0.1
+}, {
+"ArmL": 0.8,
+"ArmR": -1.0,
+"ForeArmR": -0.5,
+"Head": -0.2,
+"Torso": 0.4,
+"duration": 0.1
+}, {
+"ArmL": 1.1,
+"ArmR": 1.1,
+"ForeArmR": -1.5,
+"Head": 0.0,
+"Torso": 0.0,
+"duration": 0.3
+}])

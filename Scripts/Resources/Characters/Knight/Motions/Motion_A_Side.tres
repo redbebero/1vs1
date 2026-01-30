@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MotionData" format=3 uid="uid://cl2grfeqm2np6"]
+
+[ext_resource type="Script" uid="uid://sl60w16jgcrt" path="res://Scripts/Resources/MotionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+motion_name = "Dash Slash"
+steps = Array[Dictionary]([{
+"ArmL": -2.0,
+"ArmR": 0.5,
+"ForeArmL": -1.0,
+"Head": 0.2,
+"Torso": 0.3,
+"duration": 0.1
+}, {
+"ArmL": 2.0,
+"ArmR": -0.5,
+"ForeArmL": 0.0,
+"Head": 0.3,
+"Torso": 0.5,
+"duration": 0.1
+}])

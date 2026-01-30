@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dh2eecc8it2wi"]
+
+[ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://wlxpbxu71smm" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_B_Down.tres" id="2_anim"]
+
+[resource]
+script = ExtResource("1_script")
+skill_name = "Iron Wall"
+cooldown = 1.0
+startup_time = 0.11
+animation = ExtResource("2_anim")
+hitbox_name = "weapon_r"
+damage = 10.0
+hitbox_offset = Vector2(0, 0)
+knockback = Vector2(100, 0)
+stun_duration = 0.1
+tags = Array[String](["buff", "root"])
+self_buff_duration = 2.0
+damage_reduction_mod = 0.8
+poise_mod = 1000.0

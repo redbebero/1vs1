@@ -108,16 +108,16 @@ func _setup_motion_step() -> void:
 
 func update_state(state: String, velocity: Vector2, on_floor: bool) -> void:
 	if _current_motion and state != "Hit": 
-		pass 
-	else:
-		# 상태 변경 감지 및 이펙트 재생
-		if _visuals and _current_state != state:
-			if state == "Jump":
-				_visuals.spawn_jump_dust()
-			elif (state == "Idle" or state == "Run") and (_current_state == "Fall" or _current_state == "Jump"):
-				_visuals.spawn_land_dust()
+		return
+
+	# 상태 변경 감지 및 이펙트 재생
+	if _visuals and _current_state != state:
+		if state == "Jump":
+			_visuals.spawn_jump_dust()
+		elif (state == "Idle" or state == "Run") and (_current_state == "Fall" or _current_state == "Jump"):
+			_visuals.spawn_land_dust()
 		
-		_current_state = state
+	_current_state = state
 	_velocity = velocity
 	_is_on_floor = on_floor
 

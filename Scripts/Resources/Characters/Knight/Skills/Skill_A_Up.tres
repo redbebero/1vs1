@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://u85ccfekai5j"]
+
+[ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://dx7i50h05qd24" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_A_Up.tres" id="2_anim"]
+
+[resource]
+script = ExtResource("1_script")
+skill_name = "Rising Slash"
+cooldown = 1.0
+startup_time = 0.1
+animation = ExtResource("2_anim")
+hitbox_name = "weapon_l"
+damage = 20.0
+hitbox_size = Vector2(48, 60)
+hitbox_offset = Vector2(24, -24)
+knockback = Vector2(50, -400)
+stun_duration = 0.2
+tags = Array[String](["anti-air"])

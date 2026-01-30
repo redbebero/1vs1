@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://cgnbosrqaj8ts"]
+
+[ext_resource type="Script" uid="uid://p44bxr5nlgtf" path="res://Scripts/Resources/CharacterData.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dagk3pup43piv" path="res://Asset/sword_1.png" id="2_weapon_l"]
+[ext_resource type="Texture2D" uid="uid://c7drfpk0uwon4" path="res://Asset/shield.png" id="3_weapon_r"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_A_Neutral.tres" id="4_sa_n"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_A_Side.tres" id="5_sa_s"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_A_Up.tres" id="6_sa_u"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_A_Down.tres" id="7_sa_d"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_B_Neutral.tres" id="8_sb_n"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_B_Side.tres" id="9_sb_s"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_B_Up.tres" id="10_sb_u"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_B_Down.tres" id="11_sb_d"]
+[ext_resource type="Resource" uid="uid://bjpiyat2b0kbs" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_Ult.tres" id="12_ult"]
+
+[resource]
+script = ExtResource("1_script")
+max_hp = 155.0
+regen = 3.0
+speed = 250.0
+poise = 40.0
+damage_reduction = 0.2
+hurtbox_size = Vector2(70, 110)
+color = Color(0.8, 0.8, 0.9, 1)
+weapon_l_texture = ExtResource("2_weapon_l")
+weapon_r_texture = ExtResource("3_weapon_r")
+weapon_offset_l = Vector2(0, 80)
+weapon_offset_r = Vector2(0, -25)
+skill_a = {
+"down": ExtResource("7_sa_d"),
+"neutral": ExtResource("4_sa_n"),
+"side": ExtResource("5_sa_s"),
+"up": ExtResource("6_sa_u")
+}
+skill_b = {
+"down": ExtResource("11_sb_d"),
+"neutral": ExtResource("8_sb_n"),
+"side": ExtResource("9_sb_s"),
+"up": ExtResource("10_sb_u")
+}
+ult = ExtResource("12_ult")

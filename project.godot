@@ -19,6 +19,11 @@ run/main_scene="uid://dgoy047ramjii"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://Scripts/Core/GameManager.gd"
+VFXManager="*res://Scripts/Core/VFXManager.gd"
+
 [display]
 
 window/size/mode=2

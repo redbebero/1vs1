@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bjpiyat2b0kbs"]
+
+[ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_Ult.tres" id="2_anim"]
+
+[resource]
+script = ExtResource("1_script")
+skill_name = "Grand Impact"
+cooldown = 8.0
+startup_time = 0.3
+animation = ExtResource("2_anim")
+can_cancel = false
+hitbox_type = 1
+shape_type = 1
+expansion_duration = 0.4
+damage = 40.0
+hitbox_size = Vector2(600, 0)
+hitbox_offset = Vector2(0, 0)
+knockback = Vector2(0, -600)
+stun_duration = 1.0
+tags = Array[String](["aoe", "shockwave"])

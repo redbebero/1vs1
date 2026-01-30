@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://tr7cv50p616h"]
+
+[ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://pasuq58mevu4" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_A_Down.tres" id="2_anim"]
+
+[resource]
+script = ExtResource("1_script")
+skill_name = "Guard Thrust"
+cooldown = 1.0
+startup_time = 0.13
+animation = ExtResource("2_anim")
+hitbox_name = "weapon_l"
+damage = 12.0
+hitbox_size = Vector2(78, 24)
+hitbox_offset = Vector2(48, -12)
+knockback = Vector2(80, 0)
+stun_duration = 0.1
+tags = Array[String](["low"])

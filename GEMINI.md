@@ -2,7 +2,7 @@
 
 ## Current Focus: The Knight & Prototype Arena
 
-### 1. Prototype Arena (`World.tscn`)
+### 1. Prototype Arena (`game.tscn`)
 *   **Visuals:** Dark background, Neon floor line.
 *   **Physics:** StaticBody floor at Y=500.
 *   **Camera:** Center focused, slightly zoomed out to fit both fighters.
@@ -22,7 +22,19 @@ To support 45 characters easily via CLI, we separate Data, Visuals, and Logic.
     *   Holds Stats (HP, Speed, Poise).
     *   **MoveSet Dictionary:** Maps `[SkillSlot][Direction]` -> `SkillData`.
 
-### 3. The Knight (Implementation Detail)
+### 3. VFX Architecture (The "Particle Bus")
+To support 45+ characters with unique visual flairs without melting the CPU, we adopt a **Data-Driven GPU Pooling** strategy.
+
+*   **`VFXManager` (Autoload/Singleton):**
+    *   **Role:** The central "Bus" for all visual effects.
+    *   **Object Pooling:** Pre-allocates a pool of `GPUParticles2D` nodes at startup. Reuses them cyclically to avoid `instantiate/free` cost (GC spikes).
+    *   **API:** `VFXManager.spawn("effect_name", position, color, direction)`
+*   **`VFXRegistry` (Static Data):**
+    *   **Role:** Single Source of Truth (SSOT). A pure Dictionary file containing the "recipe" for every effect.
+    *   **Structure:** Key-Value pairs defining Amount, Spread, Velocity, Gravity, Scale Curve, etc.
+    *   **Benefit:** Designers (or AI) can tweak effect feels just by editing numbers in one file, complying with OCP (Open-Closed Principle).
+
+### 4. The Knight (Implementation Detail)
 **Stats:** HP 155, Speed 250, Poise 40%.
 **Visuals:** Silver Color, Sword (Right Hand), Shield (Left Hand).
 
@@ -41,10 +53,16 @@ To support 45 characters easily via CLI, we separate Data, Visuals, and Logic.
 
 ---
 **File Structure Plan:**
-*   `Scenes/World.tscn`
-*   `Scenes/Fighter.tscn`
+*   `Scenes/game.tscn`
+*   `Scenes/Player.tscn`
 *   `Scripts/Core/GameManager.gd`
+*   `Scripts/Core/VFXManager.gd` (New: The Effect Engine)
+*   `Scripts/Data/VFXRegistry.gd` (New: The Effect Database)
 *   `Scripts/Characters/FighterController.gd`
 *   `Scripts/Characters/StickmanVisuals.gd`
-*   `Scripts/Resources/SkillData.gd` (Updated)
+*   `Scripts/Resources/Skill.gd`
 *   `Scripts/Resources/CharacterData.gd`
+
+## Ignored Paths
+- build/
+- docs/

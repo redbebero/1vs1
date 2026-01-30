@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bonrj43gxdqrk"]
+
+[ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
+[ext_resource type="Resource" uid="uid://dh3caea6nak0p" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_B_Neutral.tres" id="2_anim"]
+
+[resource]
+script = ExtResource("1_script")
+skill_name = "Shield Bash"
+cooldown = 1.0
+startup_time = 0.11
+animation = ExtResource("2_anim")
+hitbox_name = "weapon_r"
+damage = 25.0
+hitbox_size = Vector2(70, 100)
+hitbox_offset = Vector2(40, 0)
+knockback = Vector2(150, -50)
+stun_duration = 1.2
+tags = Array[String](["stun"])

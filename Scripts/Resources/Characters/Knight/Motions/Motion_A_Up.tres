@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="MotionData" format=3 uid="uid://dx7i50h05qd24"]
+
+[ext_resource type="Script" uid="uid://sl60w16jgcrt" path="res://Scripts/Resources/MotionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+motion_name = "Rising Slash"
+steps = Array[Dictionary]([{
+"ArmL": -1.0,
+"ArmR": 1.0,
+"ForeArmL": 0.5,
+"Head": -0.5,
+"Torso": -0.2,
+"duration": 0.1
+}, {
+"ArmL": -2.5,
+"ArmR": 0.5,
+"ForeArmL": -0.5,
+"Head": -0.8,
+"Torso": -0.4,
+"duration": 0.1
+}])

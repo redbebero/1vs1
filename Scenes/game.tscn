@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://4k4eq8cgyrgx" path="res://Scenes/Player.tscn" id="1_fighter"]
 [ext_resource type="Script" uid="uid://dmus58cviu6gx" path="res://Scripts/Core/DynamicCamera.gd" id="2_camera"]
+[ext_resource type="Script" uid="uid://d1r0a4ajcihwh" path="res://Scripts/UI/HUD.gd" id="3_hud"]
 
 [sub_resource type="Environment" id="Environment_neon"]
 background_mode = 3
@@ -9,11 +10,11 @@ background_canvas_max_layer = 1
 glow_enabled = true
 glow_levels/1 = 1.0
 glow_levels/2 = 1.0
-glow_levels/3 = 0.5
-glow_intensity = 1.2
-glow_strength = 1.3
-glow_bloom = 0.3
-glow_blend_mode = 0
+glow_levels/3 = 1.0
+glow_levels/4 = 0.5
+glow_intensity = 1.0
+glow_strength = 1.5
+glow_bloom = 0.8
 glow_hdr_threshold = 0.5
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ground"]
@@ -52,6 +53,9 @@ position = Vector2(300, 450)
 position = Vector2(852, 450)
 player_id = 2
 
-[node name="DynamicCamera" type="Camera2D" parent="." unique_id=1646275972]
+[node name="DynamicCamera" type="Camera2D" parent="." unique_id=1646275972 groups=["Camera"]]
 position = Vector2(576, 450)
 script = ExtResource("2_camera")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1459236334 groups=["HUD"]]
+script = ExtResource("3_hud")

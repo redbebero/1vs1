@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MotionData" format=3 uid="uid://dhjn8isb0bfjp"]
+
+[ext_resource type="Script" uid="uid://sl60w16jgcrt" path="res://Scripts/Resources/MotionData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+motion_name = "Silver Slash"
+steps = Array[Dictionary]([{
+"ArmL": -3.0,
+"ArmR": 1.0,
+"ForeArmL": -0.8,
+"Head": -0.3,
+"Torso": 0.4,
+"duration": 0.25
+}, {
+"ArmL": 2.0,
+"ArmR": 0.5,
+"ForeArmL": 0.2,
+"Head": 0.3,
+"Torso": -0.6,
+"duration": 0.05
+}, {
+"ArmL": 1.2,
+"ArmR": 1.1,
+"ForeArmL": -1.5,
+"Head": 0.1,
+"Torso": -0.2,
+"duration": 0.2
+}])
