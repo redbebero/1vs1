@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="HitboxData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/HitboxData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+name = "ShieldBash"
+type = 2
+shape = 0
+size = Vector2(100, 100)
+offset = Vector2(0, 0)
+attached_to = "weapon_r"
+delay = 0.05
+duration = 0.2
+damage = 8.0
+stun = 0.3
+knockback_force = 850.0
+damage_multiplier = 1.0
+knockback_multiplier = 1.0

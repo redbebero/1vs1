@@ -3,14 +3,17 @@
 [ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://dhjn8isb0bfjp" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_A_Neutral.tres" id="2_anim"]
 
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Sword_Swing.tres" id="3_hb"]
+
 [resource]
 script = ExtResource("1_script")
 skill_name = "Silver Slash"
-cooldown = 1.0
+cooldown = 0.5
 startup_time = 0.1
 animation = ExtResource("2_anim")
-hitbox_name = "weapon_l"
+can_cancel = true
 damage = 15.0
-hitbox_size = Vector2(60, 20)
-hitbox_offset = Vector2(30, 0)
-knockback = Vector2(50, 0)
+knockback = Vector2(200, -100)
+stun_duration = 0.2
+tags = Array[String]([])
+hitboxes = Array[Resource("res://Scripts/Resources/HitboxData.gd")]([ExtResource("3_hb")])

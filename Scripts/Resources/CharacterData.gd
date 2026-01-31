@@ -27,9 +27,14 @@ extends Resource
 @export var weapon_scale_l: Vector2 = Vector2(0.5, 0.5) 
 @export var weapon_scale_r: Vector2 = Vector2(0.5, 0.5)
 @export var weapon_offset_l: Vector2 = Vector2.ZERO
-
 @export var weapon_offset_r: Vector2 = Vector2(20, 0)
+@export var weapon_rot_l: float = 0.0 # Degrees
+@export var weapon_rot_r: float = 0.0 # Degrees
+@export var head_accessory_points: PackedVector2Array = []
+
+@export var head_accessory_color: Color = Color.TRANSPARENT
 @export var passives: Array[Script] = [] # List of Passive GDScripts to instantiate
+@export var vfx_registry: Script # Character specific VFX dictionary script
 
 
 @export_group("Skills")

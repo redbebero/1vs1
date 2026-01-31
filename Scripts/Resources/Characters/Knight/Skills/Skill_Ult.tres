@@ -3,19 +3,19 @@
 [ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
 [ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_Ult.tres" id="2_anim"]
 
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Ult_H_Beam.tres" id="3_hb_h"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Ult_V_Beam.tres" id="4_hb_v"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Ult_Ring.tres" id="5_hb_r"]
+
 [resource]
 script = ExtResource("1_script")
-skill_name = "Grand Impact"
+skill_name = "Grand Cross"
 cooldown = 8.0
 startup_time = 0.3
 animation = ExtResource("2_anim")
 can_cancel = false
-hitbox_type = 1
-shape_type = 1
-expansion_duration = 0.4
 damage = 40.0
-hitbox_size = Vector2(600, 0)
-hitbox_offset = Vector2(0, 0)
 knockback = Vector2(0, -600)
 stun_duration = 1.0
-tags = Array[String](["aoe", "shockwave"])
+tags = Array[String](["aoe", "grand_cross"])
+hitboxes = Array[Resource("res://Scripts/Resources/HitboxData.gd")]([ExtResource("3_hb_h"), ExtResource("4_hb_v"), ExtResource("5_hb_r")])

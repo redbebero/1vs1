@@ -20,23 +20,23 @@ func on_process(fighter: CharacterBody2D, delta: float) -> void:
 
 ## Called when the fighter deals damage to a target
 ## Return the modified damage amount
-func on_deal_damage(fighter: CharacterBody2D, target: CharacterBody2D, amount: float) -> float:
+func on_deal_damage(_fighter: CharacterBody2D, _target: CharacterBody2D, amount: float) -> float:
 	return amount
 
 ## Called when the fighter takes damage from a source
 ## Return the modified damage amount
-func on_take_damage(fighter: CharacterBody2D, source: Node2D, amount: float) -> float:
+func on_take_damage(_fighter: CharacterBody2D, _source: Node2D, amount: float) -> float:
 	return amount
 
 ## Called when the fighter is hit (after damage calculation)
-func on_hit(fighter: CharacterBody2D, source: Node2D) -> void:
+func on_hit(_fighter: CharacterBody2D, _source: Node2D) -> void:
 	pass
 
 ## Called when the fighter hits an enemy
-func on_attack_hit(fighter: CharacterBody2D, target: CharacterBody2D) -> void:
+func on_attack_hit(_fighter: CharacterBody2D, _target: CharacterBody2D) -> void:
 	pass
 
 ## Called to modify a specific stat (e.g. "speed", "poise")
 ## Return the modified stat value
-func modify_stat(fighter: CharacterBody2D, stat_name: String, base_value: float) -> float:
+func modify_stat(_fighter: CharacterBody2D, _stat_name: String, base_value: float) -> float:
 	return base_value

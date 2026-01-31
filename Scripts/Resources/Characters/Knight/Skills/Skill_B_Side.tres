@@ -3,15 +3,17 @@
 [ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://xr5p5drbaa20" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_B_Side.tres" id="2_anim"]
 
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Shield_Bash.tres" id="3_hb"]
+
 [resource]
 script = ExtResource("1_script")
 skill_name = "Justice Guard"
 cooldown = 1.0
 startup_time = 0.11
 animation = ExtResource("2_anim")
-hitbox_name = "weapon_r"
+can_cancel = true
 damage = 10.0
-hitbox_size = Vector2(90, 90)
 knockback = Vector2(200, 0)
 stun_duration = 0.3
 tags = Array[String](["projectile_break"])
+hitboxes = Array[Resource("res://Scripts/Resources/HitboxData.gd")]([ExtResource("3_hb")])

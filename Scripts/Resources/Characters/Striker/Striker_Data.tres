@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/CharacterData.gd" id="1_script"]
+[ext_resource type="Script" path="res://Scripts/Resources/Passives/Striker/HotBlood.gd" id="2_hotblood"]
+[ext_resource type="Script" path="res://Scripts/Resources/Passives/Striker/Flash.gd" id="3_flash"]
+[ext_resource type="Script" path="res://Scripts/Resources/Passives/Striker/FightingSpirit.gd" id="4_fighting"]
+
+[resource]
+script = ExtResource("1_script")
+max_hp = 115.0
+regen = 2.0
+speed = 360.0
+poise = 50.0
+damage_reduction = 0.05
+hurtbox_size = Vector2(40, 80)
+color = Color(1, 0.2, 0.2, 1)
+head_radius = 12.0
+line_width = 5.0
+head_accessory_points = PackedVector2Array(-15, -5, 15, -5, 20, 5, -10, 5)
+head_accessory_color = Color(1, 0, 0, 1)
+passives = Array[Script]([ExtResource("2_hotblood"), ExtResource("3_flash"), ExtResource("4_fighting")])
+skill_a = {}
+skill_b = {}

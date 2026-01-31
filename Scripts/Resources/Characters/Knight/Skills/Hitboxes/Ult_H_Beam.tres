@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HitboxData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/HitboxData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+name = "HorizontalBeam"
+type = 0
+shape = 0
+size = Vector2(800, 100)
+offset = Vector2(0, -20)
+delay = 0.3
+duration = 0.5
+damage_multiplier = 1.0
+knockback_multiplier = 1.0

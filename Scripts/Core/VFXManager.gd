@@ -10,7 +10,6 @@ var _particle_pool: Array[GPUParticles2D] = []
 var _pool_index: int = 0
 
 # --- Time Management ---
-var _hitstop_duration: float = 0.0
 var _is_hitstop_active: bool = false
 
 # Global Signals
@@ -19,6 +18,8 @@ signal camera_shake_requested(amount: float)
 # Material Cache (Shared Resources)
 var _default_gradient_tex: GradientTexture1D
 var _default_curve_tex: CurveTexture
+
+var _custom_registries: Array[Dictionary] = []
 
 func _ready() -> void:
 	_init_resources()
@@ -114,11 +115,38 @@ func _init_pool() -> void:
 		add_child(p)
 		_particle_pool.append(p)
 
+func register_vfx(registry_data: Dictionary) -> void:
+	if not _custom_registries.has(registry_data):
+		_custom_registries.append(registry_data)
+
 ## Main Entry Point: Play an effect
 func spawn(effect_name: String, pos: Vector2, color: Color = Color.WHITE, facing_dir: float = 1.0) -> void:
-	var data = VFXRegistry.get_data(effect_name)
+	var data = {}
+	
+	# 1. Check custom registries first (character specific)
+	for reg in _custom_registries:
+		if reg.has(effect_name):
+			data = reg[effect_name]
+			break
+	
+	# 2. Fallback to global registry
+	if data.is_empty():
+		data = VFXRegistry.get_data(effect_name)
+		
 	if data.is_empty(): return
 	
+	# Procedural Effect (Expanding Ring)
+	if effect_name == "impact_shockwave":
+		var ring = ExpandingRing.new()
+		ring.top_level = true
+		ring.global_position = pos
+		ring.ring_color = color
+		ring.max_radius = 160.0
+		ring.thickness = 15.0
+		get_tree().current_scene.add_child(ring)
+		return
+
+	# Particle Effect
 	var p = _get_next_particle()
 	
 	# Reset transform
@@ -175,3 +203,20 @@ func _get_next_particle() -> GPUParticles2D:
 	
 	_pool_index = (_pool_index + 1) % POOL_SIZE
 	return p
+
+class ExpandingRing extends Node2D:
+	var radius = 10.0
+	var max_radius = 400.0
+	var thickness = 20.0
+	var ring_color = Color.WHITE
+	
+	func _draw():
+		draw_arc(Vector2.ZERO, radius, 0, TAU, 64, ring_color, thickness, true)
+	
+	func _process(delta):
+		radius = move_toward(radius, max_radius, 800.0 * delta)
+		thickness = move_toward(thickness, 2.0, 30.0 * delta)
+		modulate.a -= delta * 1.5
+		queue_redraw()
+		if modulate.a <= 0:
+			queue_free()

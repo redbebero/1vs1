@@ -81,7 +81,6 @@ func _process_motion(delta: float) -> void:
 	var step = _current_motion.steps[_motion_step_index]
 	var duration = step.get("duration", 0.1)
 	_motion_step_time += delta
-	var t = clamp(_motion_step_time / duration, 0.0, 1.0)
 	for bone_name in _motion_targets:
 		var target_rot = _motion_targets[bone_name]
 		_lerp_bone_rot(bone_name, target_rot, 15.0 * delta)

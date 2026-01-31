@@ -15,12 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="1vs1"
-run/main_scene="uid://dgoy047ramjii"
+run/main_scene="res://Scenes/CharacterSelect.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+Global="*res://Scripts/Core/Global.gd"
 GameManager="*res://Scripts/Core/GameManager.gd"
 VFXManager="*res://Scripts/Core/VFXManager.gd"
 

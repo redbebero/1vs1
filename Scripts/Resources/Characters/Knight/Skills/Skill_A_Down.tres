@@ -3,16 +3,17 @@
 [ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://pasuq58mevu4" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_A_Down.tres" id="2_anim"]
 
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Sword_Swing.tres" id="3_hb"]
+
 [resource]
 script = ExtResource("1_script")
 skill_name = "Guard Thrust"
 cooldown = 1.0
 startup_time = 0.13
 animation = ExtResource("2_anim")
-hitbox_name = "weapon_l"
+can_cancel = true
 damage = 12.0
-hitbox_size = Vector2(78, 24)
-hitbox_offset = Vector2(48, -12)
 knockback = Vector2(80, 0)
 stun_duration = 0.1
 tags = Array[String](["low"])
+hitboxes = Array[Resource("res://Scripts/Resources/HitboxData.gd")]([ExtResource("3_hb")])

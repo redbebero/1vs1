@@ -78,32 +78,29 @@ const DATA: Dictionary = {
 		"scale_amount_min": 4.0,
 		"scale_amount_max": 8.0
 	},
-	# Knight Specific
-	"knight_slash": {
+	"neon_sparks": {
 		"amount": 40,
-		"lifetime": 0.35,
-		"explosiveness": 0.4,
-		"spread": 15.0,
-		"gravity": Vector2(0, 0),
-		"initial_velocity_min": 400.0,
-		"initial_velocity_max": 700.0,
-		"scale_amount_min": 3.0,
-		"scale_amount_max": 5.0,
-		"direction": Vector2(1, 0)
-	},
-	"shockwave": {
-		"amount": 50,
-		"lifetime": 1.0,
+		"lifetime": 0.3,
 		"explosiveness": 1.0,
-		"spread": 180.0,
+		"spread": 60.0,
 		"gravity": Vector2(0, 0),
-		"initial_velocity_min": 800.0,
-		"initial_velocity_max": 1200.0,
-		"scale_amount_min": 15.0,
-		"scale_amount_max": 30.0,
+		"initial_velocity_min": 600.0,
+		"initial_velocity_max": 1000.0,
+		"scale_amount_min": 2.0,
+		"scale_amount_max": 12.0,
 		"damping_min": 1000.0,
-		"damping_max": 1500.0,
-		"z_index": 10
+		"damping_max": 1500.0
+	},
+	"impact_shockwave": {
+		"amount": 1,
+		"lifetime": 0.4,
+		"explosiveness": 1.0,
+		"spread": 360.0,
+		"gravity": Vector2(0, 0),
+		"initial_velocity_min": 0.0,
+		"initial_velocity_max": 0.0,
+		"scale_amount_min": 20.0,
+		"scale_amount_max": 20.0
 	}
 }
 

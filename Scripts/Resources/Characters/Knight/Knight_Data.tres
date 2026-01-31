@@ -12,6 +12,7 @@
 [ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_B_Up.tres" id="10_sb_u"]
 [ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_B_Down.tres" id="11_sb_d"]
 [ext_resource type="Resource" uid="uid://bjpiyat2b0kbs" path="res://Scripts/Resources/Characters/Knight/Skills/Skill_Ult.tres" id="12_ult"]
+[ext_resource type="Script" path="res://Scripts/Data/KnightVFX.gd" id="13_vfx"]
 
 [resource]
 script = ExtResource("1_script")
@@ -26,6 +27,8 @@ weapon_l_texture = ExtResource("2_weapon_l")
 weapon_r_texture = ExtResource("3_weapon_r")
 weapon_offset_l = Vector2(0, 80)
 weapon_offset_r = Vector2(0, -25)
+weapon_rot_l = 180.0
+vfx_registry = ExtResource("13_vfx")
 skill_a = {
 "down": ExtResource("7_sa_d"),
 "neutral": ExtResource("4_sa_n"),

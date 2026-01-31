@@ -3,16 +3,17 @@
 [ext_resource type="Script" uid="uid://cixc6qoh6p6xj" path="res://Scripts/Resources/Skill.gd" id="1_script"]
 [ext_resource type="Resource" uid="uid://dcm0wyk0xhj3s" path="res://Scripts/Resources/Characters/Knight/Motions/Motion_B_Up.tres" id="2_anim"]
 
+[ext_resource type="Resource" path="res://Scripts/Resources/Characters/Knight/Skills/Hitboxes/Shield_Bash.tres" id="3_hb"]
+
 [resource]
 script = ExtResource("1_script")
 skill_name = "Justice Upper"
 cooldown = 1.0
 startup_time = 0.12
 animation = ExtResource("2_anim")
-hitbox_name = "weapon_r"
+can_cancel = true
 damage = 22.0
-hitbox_size = Vector2(90, 120)
-hitbox_offset = Vector2(40, -50)
 knockback = Vector2(50, -500)
 stun_duration = 0.5
 tags = Array[String](["anti-air"])
+hitboxes = Array[Resource("res://Scripts/Resources/HitboxData.gd")]([ExtResource("3_hb")])
